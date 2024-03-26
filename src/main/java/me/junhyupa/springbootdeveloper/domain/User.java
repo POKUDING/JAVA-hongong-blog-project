@@ -5,9 +5,14 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.Table;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
-@Table(name="users")
+import java.util.Collection;
+import java.util.List;
+
+@Table(name = "users")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Entity
@@ -32,7 +37,7 @@ public class User implements UserDetails { // userDetails를 상속받아 인증
     //사용자가 가지고 있는 권한의 목록을 반환합니다.
     //현재 예제 코드에서는 사용자 이외의 권한이 없기 때문에 user 권한만 담아 반환합니다.
     @Override
-    public Collection<? extends GrantesAuthoruty> getAuthorities() {
+    public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority("user"));
     }
 
