@@ -1,0 +1,43 @@
+plugins {
+    id 'java'
+    //스프링 부트
+    id 'org.springframework.boot' version '3.0.2'
+    //스프링 부트 의존성 관리
+    id 'io.spring.dependency-management' version '1.1.0'
+}
+
+// 그룹이름 및 버전 , 컴파일 버전
+group 'me.junhyupa'
+version '1.0'
+sourceCompatibility = '17'
+
+//의존성을 받을 저장소 지정
+repositories {
+    mavenCentral()
+}
+
+//개발에 필요한 기능의 의존성 입력
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    //템플릿 엔진 ex)JSP, 타임리프, 프리마커 현재는 타임리프 사용
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+
+    runtimeOnly 'com.h2database:h2'
+
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    //스크링 시큐리티를 사용하기 위한 스터처 추가
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    // 타임리프에서 스프링 시큐리티를 사용하기 위한 의존성 추가
+    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
+    // 스프링 시큐리티를 테스트하기 위한 의존성 추가
+    testImplementation 'org.springframework.security:spring-security-test'
+}
+
+test {
+    useJUnitPlatform()
+}
